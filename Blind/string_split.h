@@ -1,5 +1,4 @@
-#ifndef STRING_SPLIT_H_INCLUDED
-#define STRING_SPLIT_H_INCLUDED
+#pragma once
 
 #include <string>
 #include <sstream>
@@ -22,5 +21,3 @@ inline std::vector<std::string> split(const std::string &s, char delim) {
     split(s, delim, std::back_inserter(elems));
     return elems;
 }
-
-#endif // STRING_SPLIT_H_INCLUDED
