@@ -268,9 +268,8 @@ Blind/Debug/
 Blind/Release/
 Blind/STATIC-Debug/
 Blind/STATIC-Release/
-Blind/working/
+Blind/working_dir/
 *.vcxproj
 *.filters
 *.user
-STATIC-Release/Blind.ipdb
 
