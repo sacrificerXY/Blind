@@ -1,5 +1,4 @@
-#ifndef LOOP_UTILITY_H_INCLUDED
-#define LOOP_UTILITY_H_INCLUDED
+#pragma once
 
 struct XYLoopCounter
 {
@@ -16,4 +15,3 @@ struct XYLoopCounter
     void increment();
 };
 
-#endif // LOOP_UTILITY_H_INCLUDED

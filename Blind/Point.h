@@ -1,5 +1,4 @@
-#ifndef POINT_H_INCLUDED
-#define POINT_H_INCLUDED
+#pragma once
 
 #include <iostream>
 
@@ -41,4 +40,3 @@ float distance(const Point &l, const Point &r);
 float distanceSqrd(const Point &l, const Point &r);
 bool collinear(Point const& a, Point const& b, Point const& c);
 bool isAlmostEqual(Point const& p1, Point const& p2, float epsilon=0.01);
-#endif // POINT_H_INCLUDED

@@ -260,16 +260,17 @@ paket-files/
 __pycache__/
 *.pyc
 
-# Assets
+# My Stuff
+Blind.sln
 Debug/
 Release/
 STATIC-Debug/
 STATIC-Release/
-Blind/Debug
-Blind/Release
-Blind/STATIC-Debug
-Blind/STATIC-Release
-Blind/working_dir
+Blind/Debug/
+Blind/Release/
+Blind/STATIC-Debug/
+Blind/STATIC-Release/
+Blind/working_dir/
 *.vcxproj
 *.filters
 *.user

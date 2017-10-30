@@ -1,5 +1,4 @@
-#ifndef MAPDATA_H_INCLUDED
-#define MAPDATA_H_INCLUDED
+#pragma once
 
 #include <vector>
 
@@ -45,5 +44,3 @@ struct MapData
     std::vector<Line> static_lines_right;
 };
 
-
-#endif // MAPDATA_H_INCLUDED

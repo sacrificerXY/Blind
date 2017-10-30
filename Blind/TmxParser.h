@@ -1,5 +1,4 @@
-#ifndef TMXPARSER_H
-#define TMXPARSER_H
+#pragma once
 
 class MapData;
 
@@ -15,4 +14,3 @@ class TmxParser
 
 };
 
-#endif // TMXPARSER_H
