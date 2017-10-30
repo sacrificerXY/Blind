@@ -32,10 +32,10 @@ void Point::rotate(float angle)
     y = rotatedY;
 }
 
-bool Point::operator+=(const Point &p) { x += p.x; y += p.y; }
-bool Point::operator-=(const Point &p) { x -= p.x; y -= p.y; }
-bool Point::operator*=(float s) { x *= s; y *= s; }
-bool Point::operator/=(float s) { x /= s; y /= s; }
+Point* Point::operator+=(const Point &p) { x += p.x; y += p.y; return this; }
+Point* Point::operator-=(const Point &p) { x -= p.x; y -= p.y; return this; }
+Point* Point::operator*=(float s) { x *= s; y *= s; return this; }
+Point* Point::operator/=(float s) { x /= s; y /= s; return this; }
 
 bool operator==(const Point &l, const Point &r) { return l.x == r.x && l.y == r.y; }
 bool operator!=(const Point &l, const Point &r) { return !(l == r); }

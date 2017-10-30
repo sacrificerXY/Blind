@@ -1,6 +1,6 @@
 #pragma once
 
-class MapData;
+struct MapData;
 
 class TmxParser
 {

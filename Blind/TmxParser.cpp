@@ -58,7 +58,7 @@ void TmxParser::parse(const char* tmx_path, MapData& mapData)
             int x = loop.x;
             int y = loop.y;
             int idd = std::atoi(id[x].c_str());
-            cout << "ID " << x << ',' << y << ": " << idd << '\n';
+            //cout << "ID " << x << ',' << y << ": " << idd << '\n';
             // do rotations
             // -----
             tiles[x][y].gid = idd;
@@ -157,7 +157,7 @@ void generateLines(vector<vector<Tile>> const& tiles, Point num_tiles, Point lin
                 if (tile.is_solid && (tile.solid_flag | solid_bit_flag) == solid_bit_flag) length++;
                 else
                 {
-                    cout << "length: " << length << '\n';
+                    
                     output_lines.push_back(Line(start, start + line_direction * length));
                     is_creating_line = false;
                 }
@@ -168,7 +168,7 @@ void generateLines(vector<vector<Tile>> const& tiles, Point num_tiles, Point lin
         if (is_creating_line)
         {
             output_lines.push_back(Line(start, start + line_direction * length));
-            cout << "length: " << length << '\n';
+            //cout << "length: " << length << '\n';
         }
         if (loop.outer_loop_end) break;
     }

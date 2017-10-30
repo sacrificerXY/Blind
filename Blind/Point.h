@@ -15,10 +15,10 @@ struct Point
     Point get_unit() const;
     void rotate(float angle);
 
-    bool operator+=(const Point &p);
-    bool operator-=(const Point &p);
-    bool operator*=(float s);
-    bool operator/=(float s);
+	Point* operator+=(const Point &p);
+	Point* operator-=(const Point &p);
+	Point* operator*=(float s);
+	Point* operator/=(float s);
 
     friend std::ostream& operator<<(std::ostream& os, const Point &p);
 };
