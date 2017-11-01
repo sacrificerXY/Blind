@@ -36,6 +36,8 @@ struct MapData
 {
     Point num_tiles;
 
+	Point location_start;
+
     std::vector<std::vector<Tile>> tiles;
 
     std::vector<Line> static_lines_top;

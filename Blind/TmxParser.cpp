@@ -22,7 +22,7 @@ XMLElement* getElement(XMLElement * e, const char* path);
 void generateLines(vector<vector<Tile>> const& tiles, Point num_tiles, Point line_direction, Point line_offset, int solid_bit_flag, vector<Line> & output_lines);
 
 
-void TmxParser::parse(const char* tmx_path, MapData& mapData)
+void TmxParser::parse(const char* tmx_path, MapData& map_data)
 {
     XMLDocument doc;
     if (doc.LoadFile(tmx_path) != XMLError::XML_SUCCESS)
@@ -35,15 +35,32 @@ void TmxParser::parse(const char* tmx_path, MapData& mapData)
     Point num_tiles;
     num_tiles.x = map->IntAttribute("width", 0);
     num_tiles.y = map->IntAttribute("height", 0);
-    mapData.num_tiles = num_tiles;
+    map_data.num_tiles = num_tiles;
+
+	XMLElement* location = getElement(map, "objectgroup=obj_locations.object");
+	while (location)
+	{
+		const char* name = location->Attribute("name");
+		const char* type = location->Attribute("type");
+		Point position(location->FloatAttribute("x"), location->FloatAttribute("y"));
+		Point size(location->FloatAttribute("width"), location->FloatAttribute("height"));
+		position /= 20;
+		size /= 20;
+		if (string(name) == "start") map_data.location_start = position + 0.5 * size;
+
+		cout << "Location: " << name << " --type=" << type << '\n';
+		cout << "    position  " << position << '\n';
+		cout << "    size      " << size << '\n';
+		location = location->NextSiblingElement("object");
+	}
 
     XMLElement* tiles_static = getElement(map, "layer=tiles_static.data");
     stringstream ss;
     ss << tiles_static->GetText();
 
-    vector<vector<int>> gid(mapData.num_tiles.x, vector<int>(num_tiles.y));
-    vector<vector<Tile>> & tiles = mapData.tiles;
-    tiles = vector<vector<Tile>>(mapData.num_tiles.x, vector<Tile>(num_tiles.y));
+    vector<vector<int>> gid(map_data.num_tiles.x, vector<int>(num_tiles.y));
+    vector<vector<Tile>> & tiles = map_data.tiles;
+    tiles = vector<vector<Tile>>(map_data.num_tiles.x, vector<Tile>(num_tiles.y));
 
     string line;
     XYLoopCounter loop(num_tiles.x, num_tiles.y, false);
@@ -82,10 +99,10 @@ void TmxParser::parse(const char* tmx_path, MapData& mapData)
         if (x == num_tiles.x-1 || tiles[x+1][y].is_solid)   tile.solid_flag |= TILE_SOLID_RIGHT;
     }
 
-    generateLines(tiles, num_tiles, {1, 0}, {0, 0}, ~TILE_SOLID_TOP, mapData.static_lines_top);
-    generateLines(tiles, num_tiles, {1, 0}, {0, 1}, ~TILE_SOLID_BOTTOM, mapData.static_lines_bottom);
-    generateLines(tiles, num_tiles, {0, 1}, {0, 0}, ~TILE_SOLID_LEFT, mapData.static_lines_left);
-    generateLines(tiles, num_tiles, {0, 1}, {1, 0}, ~TILE_SOLID_RIGHT, mapData.static_lines_right);
+    generateLines(tiles, num_tiles, {1, 0}, {0, 0}, ~TILE_SOLID_TOP, map_data.static_lines_top);
+    generateLines(tiles, num_tiles, {1, 0}, {0, 1}, ~TILE_SOLID_BOTTOM, map_data.static_lines_bottom);
+    generateLines(tiles, num_tiles, {0, 1}, {0, 0}, ~TILE_SOLID_LEFT, map_data.static_lines_left);
+    generateLines(tiles, num_tiles, {0, 1}, {1, 0}, ~TILE_SOLID_RIGHT, map_data.static_lines_right);
 
 }
 
